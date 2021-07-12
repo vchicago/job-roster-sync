@@ -101,6 +101,7 @@ func main() {
 			}
 		}
 
+		rec.CID = uint(controller.CID)
 		rec.FirstName = controller.FirstName
 		rec.LastName = controller.LastName
 		rec.Email = controller.Email
