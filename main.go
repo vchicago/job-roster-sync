@@ -30,6 +30,7 @@ import (
 	"github.com/common-nighthawk/go-figure"
 	"github.com/dhawton/log4g"
 	"github.com/joho/godotenv"
+	gonanoid "github.com/matoous/go-nanoid/v2"
 	"github.com/vchicago/common/utils"
 	"github.com/vchicago/job-user-sync/db"
 	dbTypes "github.com/vchicago/types/database"
@@ -87,6 +88,7 @@ func main() {
 
 	log.Info("Processing data")
 	start = time.Now()
+	updateId, _ := gonanoid.New(20)
 	for i := 0; i < len(data.Controllers); i++ {
 		controller := data.Controllers[i]
 		rec := dbTypes.User{}
@@ -105,7 +107,7 @@ func main() {
 		rec.FirstName = controller.FirstName
 		rec.LastName = controller.LastName
 		rec.Email = controller.Email
-		rec.UpdateId = start
+		rec.UpdateId = updateId
 		if controller.Membership == "visit" {
 			rec.ControllerType = "visitor"
 		} else {
@@ -125,13 +127,14 @@ func main() {
 	log.Info("Checking for removed users")
 
 	results := []dbTypes.User{}
-	if err := db.DB.Where("update_id < ?", start).Find(&results).Error; err != nil {
+	if err := db.DB.Not("update_id = ?", updateId).Find(&results).Error; err != nil {
 		if !errors.Is(err, gorm.ErrRecordNotFound) {
 			log.Error("Error finding non-updated users with update_id of %s", start)
 			return
 		}
 	} else {
 		for _, user := range results {
+			log.Info("Controller %d appears to be removed, update id, %s, does not match %s", user.CID, user.UpdateId, updateId)
 			user.ControllerType = "none"
 			if err := db.DB.Save(&user).Error; err != nil {
 				log.Error("Error setting controller %d to non-member: %s", user.CID, err.Error())
