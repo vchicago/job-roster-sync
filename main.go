@@ -105,6 +105,7 @@ func main() {
 		rec.FirstName = controller.FirstName
 		rec.LastName = controller.LastName
 		rec.Email = controller.Email
+		rec.UpdateId = start
 		if controller.Membership == "visit" {
 			rec.ControllerType = "visitor"
 		} else {
@@ -118,6 +119,23 @@ func main() {
 
 		if err := db.DB.Save(&rec).Error; err != nil {
 			log.Error("Error saving controller, %d to database: %s", controller.CID, err.Error())
+		}
+	}
+
+	log.Info("Checking for removed users")
+
+	results := []dbTypes.User{}
+	if err := db.DB.Where("update_id < ?", start).Find(&results).Error; err != nil {
+		if !errors.Is(err, gorm.ErrRecordNotFound) {
+			log.Error("Error finding non-updated users with update_id of %s", start)
+			return
+		}
+	} else {
+		for _, user := range results {
+			user.ControllerType = "none"
+			if err := db.DB.Save(&user).Error; err != nil {
+				log.Error("Error setting controller %d to non-member: %s", user.CID, err.Error())
+			}
 		}
 	}
 
