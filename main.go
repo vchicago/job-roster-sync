@@ -83,7 +83,7 @@ func main() {
 
 	data := &VATUSAReturn{}
 	if err := json.Unmarshal([]byte(responseData), &data); err != nil {
-		log.Fatal("Could not unmarshal data from VATUSA: %s", err.Error())
+		log.Fatal("Could not unmarshal data from VATUSA: %s\nResponse Code: %d\nResponse Body:%s", err.Error(), response.StatusCode, responseData)
 	}
 
 	log.Info("Processing data")
