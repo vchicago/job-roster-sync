@@ -47,9 +47,4 @@ jobs:
         env:
           KUBE_CONFIG: ${{ secrets.KUBECTL }}
         with:
-          args: set image deployment/job-roster-sync job-roster-sync=vzau/job-roster-sync:${{ steps.prep.outputs.version }} -n dev
-      - name: Verify deployment
-        if: ${{ github.event_name != 'pull_request' }}
-        uses: actions-hub/kubectl@master
-        with:
-          args: rollout status deployment/job-roster-sync -n dev
+          args: set image cj/job-roster-sync job-roster-sync=vzau/job-roster-sync:${{ steps.prep.outputs.version }} -n dev
