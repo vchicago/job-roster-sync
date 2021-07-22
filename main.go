@@ -31,9 +31,9 @@ import (
 	"github.com/dhawton/log4g"
 	"github.com/joho/godotenv"
 	gonanoid "github.com/matoous/go-nanoid/v2"
-	"github.com/vchicago/common/utils"
-	"github.com/vchicago/job-user-sync/db"
-	dbTypes "github.com/vchicago/types/database"
+	"github.com/vzau/common/utils"
+	"github.com/vzau/job-user-sync/db"
+	dbTypes "github.com/vzau/types/database"
 	"gorm.io/gorm"
 )
 
