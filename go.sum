@@ -24,6 +24,8 @@ github.com/vzau/common v0.0.0-20210711183623-0e4241586242 h1:6tCyEMb5Q7MPFP0Aq6N
 github.com/vzau/common v0.0.0-20210711183623-0e4241586242/go.mod h1:l6VVMU43Iz9EcGwH8WHq54f7sJBGBilWRBKqBjpCwuw=
 github.com/vzau/common v0.0.0-20210712014016-5713837bd65d h1:KQdSyRB0pq7XGh4IgJiB9JHBBePlVff8IzBkgh0Hkvo=
 github.com/vzau/common v0.0.0-20210712014016-5713837bd65d/go.mod h1:l6VVMU43Iz9EcGwH8WHq54f7sJBGBilWRBKqBjpCwuw=
+github.com/vzau/common v0.0.0-20210722011859-2af4235c98bf h1:MA8Yvj+K02P2dkAs9kxrCqle4LrgfoDcyL9K0Ql5OKQ=
+github.com/vzau/common v0.0.0-20210722011859-2af4235c98bf/go.mod h1:9CgZjbVsmrcBjkGxKQ4piEN/KM2FVgWaje5Z80Ms+tQ=
 github.com/vzau/types v0.0.0-20210711164926-4c35b2cd8e18 h1:gapvNd+utiEX+/UyVDL7SrTvniqQtEz8T06RWldU1n0=
 github.com/vzau/types v0.0.0-20210711164926-4c35b2cd8e18/go.mod h1:n13UVTFIkREf2gnCH7RL7pUcVbTgfmiCyhUxh3v0arA=
 github.com/vzau/types v0.0.0-20210712001734-637d9510540f h1:Ux9eejEPSnWmvzsJXYt4jIKARqnJhv500nWqro6UccY=
@@ -38,6 +40,8 @@ github.com/vzau/types v0.0.0-20210717181749-11f02edb3efa h1:RA72qncpQSwy1O0zrg+T
 github.com/vzau/types v0.0.0-20210717181749-11f02edb3efa/go.mod h1:n13UVTFIkREf2gnCH7RL7pUcVbTgfmiCyhUxh3v0arA=
 github.com/vzau/types v0.0.0-20210717184044-dffbb1e79023 h1:FuXeroFj2qXcBipWmglfOVn1S1B8Nrz6DMMjttC6e3E=
 github.com/vzau/types v0.0.0-20210717184044-dffbb1e79023/go.mod h1:n13UVTFIkREf2gnCH7RL7pUcVbTgfmiCyhUxh3v0arA=
+github.com/vzau/types v0.0.0-20210722011430-2b3238311a40 h1:7IL7jHhmZ9/uwxqGP3rGPATMXHRScLT+hf8zR1tcwyo=
+github.com/vzau/types v0.0.0-20210722011430-2b3238311a40/go.mod h1:HttNL+hY2xVwdXvt90Yt4q1I5PDOXLYlcDvSNnGirjk=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
 gorm.io/driver/mysql v1.1.1 h1:yr1bpyqiwuSPJ4aGGUX9nu46RHXlF8RASQVb1QQNcvo=
