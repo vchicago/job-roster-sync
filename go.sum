@@ -42,6 +42,8 @@ github.com/vzau/types v0.0.0-20210717184044-dffbb1e79023 h1:FuXeroFj2qXcBipWmglf
 github.com/vzau/types v0.0.0-20210717184044-dffbb1e79023/go.mod h1:n13UVTFIkREf2gnCH7RL7pUcVbTgfmiCyhUxh3v0arA=
 github.com/vzau/types v0.0.0-20210722011430-2b3238311a40 h1:7IL7jHhmZ9/uwxqGP3rGPATMXHRScLT+hf8zR1tcwyo=
 github.com/vzau/types v0.0.0-20210722011430-2b3238311a40/go.mod h1:HttNL+hY2xVwdXvt90Yt4q1I5PDOXLYlcDvSNnGirjk=
+github.com/vzau/types v1.0.0 h1:9D8rMTJHim562qMXoquAjV/r7erv5Qg7MqGzshsXEYI=
+github.com/vzau/types v1.0.0/go.mod h1:HttNL+hY2xVwdXvt90Yt4q1I5PDOXLYlcDvSNnGirjk=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
 gorm.io/driver/mysql v1.1.1 h1:yr1bpyqiwuSPJ4aGGUX9nu46RHXlF8RASQVb1QQNcvo=
@@ -49,3 +51,5 @@ gorm.io/driver/mysql v1.1.1/go.mod h1:KdrTanmfLPPyAOeYGyG+UpDys7/7eeWT1zCq+oekYn
 gorm.io/gorm v1.21.9/go.mod h1:F+OptMscr0P2F2qU97WT1WimdH9GaQPoDW7AYd5i2Y0=
 gorm.io/gorm v1.21.11 h1:CxkXW6Cc+VIBlL8yJEHq+Co4RYXdSLiMKNvgoZPjLK4=
 gorm.io/gorm v1.21.11/go.mod h1:F+OptMscr0P2F2qU97WT1WimdH9GaQPoDW7AYd5i2Y0=
+gorm.io/gorm v1.21.12 h1:3fQM0Eiz7jcJEhPggHEpoYnsGZqynMzverL77DV40RM=
+gorm.io/gorm v1.21.12/go.mod h1:F+OptMscr0P2F2qU97WT1WimdH9GaQPoDW7AYd5i2Y0=
