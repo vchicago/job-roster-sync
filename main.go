@@ -30,9 +30,10 @@ import (
 	"github.com/common-nighthawk/go-figure"
 	"github.com/dhawton/log4g"
 	"github.com/joho/godotenv"
-	"github.com/vchicago/common/utils"
-	"github.com/vchicago/job-user-sync/db"
-	dbTypes "github.com/vchicago/types/database"
+	gonanoid "github.com/matoous/go-nanoid/v2"
+	"github.com/vzau/common/utils"
+	"github.com/vzau/job-user-sync/db"
+	dbTypes "github.com/vzau/types/database"
 	"gorm.io/gorm"
 )
 
@@ -82,11 +83,12 @@ func main() {
 
 	data := &VATUSAReturn{}
 	if err := json.Unmarshal([]byte(responseData), &data); err != nil {
-		log.Fatal("Could not unmarshal data from VATUSA: %s", err.Error())
+		log.Fatal("Could not unmarshal data from VATUSA: %s\nResponse Code: %d\nResponse Body:%s", err.Error(), response.StatusCode, responseData)
 	}
 
 	log.Info("Processing data")
 	start = time.Now()
+	updateId, _ := gonanoid.New(20)
 	for i := 0; i < len(data.Controllers); i++ {
 		controller := data.Controllers[i]
 		rec := dbTypes.User{}
@@ -101,9 +103,11 @@ func main() {
 			}
 		}
 
+		rec.CID = uint(controller.CID)
 		rec.FirstName = controller.FirstName
 		rec.LastName = controller.LastName
 		rec.Email = controller.Email
+		rec.UpdateId = updateId
 		if controller.Membership == "visit" {
 			rec.ControllerType = "visitor"
 		} else {
@@ -117,6 +121,24 @@ func main() {
 
 		if err := db.DB.Save(&rec).Error; err != nil {
 			log.Error("Error saving controller, %d to database: %s", controller.CID, err.Error())
+		}
+	}
+
+	log.Info("Checking for removed users")
+
+	results := []dbTypes.User{}
+	if err := db.DB.Not("update_id = ?", updateId).Find(&results).Error; err != nil {
+		if !errors.Is(err, gorm.ErrRecordNotFound) {
+			log.Error("Error finding non-updated users with update_id of %s", start)
+			return
+		}
+	} else {
+		for _, user := range results {
+			log.Info("Controller %d appears to be removed, update id, %s, does not match %s", user.CID, user.UpdateId, updateId)
+			user.ControllerType = "none"
+			if err := db.DB.Save(&user).Error; err != nil {
+				log.Error("Error setting controller %d to non-member: %s", user.CID, err.Error())
+			}
 		}
 	}
 
